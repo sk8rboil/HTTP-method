@@ -1,76 +1,95 @@
-// ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors, sized_box_for_whitespace, prefer_if_null_operators, prefer_adjacent_string_concatenation
+
+import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:http_method/models/GET/http_GET_provider.dart';
+import 'package:provider/provider.dart';
 
 class MygetProvider extends StatelessWidget {
   const MygetProvider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final dataProvider = Provider.of<HttpGetProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Container(
-                width: 100,
-                height: 100,
-                child: Image.network(
-                    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'),
-              ),
-            ),
-            SizedBox(
-              height: 40,
-              child: Column(
-                children: [
-                  Text(
-                    'ID :',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 40,
-              child: Column(
-                children: [
-                  Text(
-                    'NAME :',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 40,
-              child: Column(
-                children: [
-                  Text(
-                    'EMAIL :',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'GET DATA',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+      body: Consumer<HttpGetProvider>(
+        builder: (BuildContext context, providervalue, Widget? child) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  child: Image.network(providervalue.data["avatar"] == null
+                      ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+                      : providervalue.data["avatar"]),
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 40,
+                child: Column(
+                  children: [
+                    Text(
+                      providervalue.data["id"] == null
+                          ? 'ID :'
+                          : 'ID : ${providervalue.data["id"]}'.toString(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 40,
+                child: Column(
+                  children: [
+                    Text(
+                      providervalue.data["first_name"] == null &&
+                              providervalue.data["last_name"] == null
+                          ? 'NAME : '
+                          : 'NAME : ${providervalue.data["first_name"]}' +
+                              '${providervalue.data["last_name"]}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 40,
+                child: Column(
+                  children: [
+                    Text(
+                      providervalue.data["email"] == null
+                          ? 'EMAIL : '
+                          : 'EMAIL :${providervalue.data["email"]}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  dataProvider
+                      .connectAPI((1 + Random().nextInt(10)).toString());
+                },
+                child: Text(
+                  'GET DATA',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

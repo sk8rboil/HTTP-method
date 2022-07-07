@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:http_method/homepage.dart';
+import 'package:http_method/models/GET/http_GET_provider.dart';
 import 'package:http_method/models/POST/http_POST_provider.dart';
 import 'package:http_method/screens/GET_provider.dart';
 import 'package:http_method/screens/GET_stateful.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<HttpProvider>(
           create: (_) => HttpProvider(),
+        ),
+        ChangeNotifierProvider<HttpGetProvider>(
+          create: (_) => HttpGetProvider(),
         ),
       ],
       child: MaterialApp(
