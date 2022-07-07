@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:http_method/homepage.dart';
 import 'package:http_method/models/POST/http_POST_provider.dart';
+import 'package:http_method/screens/GET_provider.dart';
+import 'package:http_method/screens/GET_stateful.dart';
 import 'package:http_method/screens/POST_provider.dart';
 import 'package:http_method/screens/POST_stateful.dart';
 import 'package:provider/provider.dart';
@@ -24,15 +26,18 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.indigo,
         ),
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
         routes: {
           '/homepage': (context) => MyHomePage(title: ''),
-          '/home_stateful': (context) => MyhomeStateful(),
-          '/home_provider': (context) => MyhomeProvider(),
+          '/post_stateful': (context) => MyhomeStateful(),
+          '/post_provider': (context) => MyhomeProvider(),
+          '/get_stateful': (context) => MygetStateful(),
+          '/get_provider': (context) => MygetProvider(),
         },
       ),
     );

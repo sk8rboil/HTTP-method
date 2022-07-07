@@ -1,19 +1,20 @@
-// ignore_for_file: file_names, prefer_const_constructors, avoid_print, unnecessary_null_comparison
+// ignore_for_file: file_names, prefer_const_constructors_in_immutables, prefer_const_constructors, sized_box_for_whitespace, unnecessary_null_comparison, prefer_if_null_operators, prefer_interpolation_to_compose_strings
+
+import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:http_method/models/POST/http_POST_stateful.dart';
+import 'package:http_method/models/GET/http_GET_stateful.dart';
 
-class MyhomeStateful extends StatefulWidget {
-  const MyhomeStateful({Key? key}) : super(key: key);
+class MygetStateful extends StatefulWidget {
+  MygetStateful({Key? key}) : super(key: key);
 
   @override
-  State<MyhomeStateful> createState() => _MyWidgetState();
+  State<MygetStateful> createState() => _MygetStatefulState();
 }
 
-class _MyWidgetState extends State<MyhomeStateful> {
-  HttpStateful dataResponse =
-      HttpStateful(id: '', name: '', job: '', createdAt: '');
-
+class _MygetStatefulState extends State<MygetStateful> {
+  HttpGetStateful dataResponse =
+      HttpGetStateful(id: '', fullname: '', email: '', avatar: '');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +23,29 @@ class _MyWidgetState extends State<MyhomeStateful> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                width: 100,
+                height: 100,
+                child: Image.network(
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    return Text('Error Please Press Button Before');
+                  },
+                  dataResponse.avatar == null
+                      ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+                      : dataResponse.avatar,
+                ),
+              ),
+            ),
             SizedBox(
               height: 40,
               child: Column(
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   Text(
-                    dataResponse.id == null
-                        ? "ID : 'DATA TEST ID' "
-                        : "ID : ${dataResponse.id}",
+                    dataResponse.id == null ? "ID: " : "ID: ${dataResponse.id}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -44,9 +59,9 @@ class _MyWidgetState extends State<MyhomeStateful> {
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   Text(
-                    dataResponse.name == null
-                        ? "NAME : 'DATA TEST NAME' "
-                        : "NAME : ${dataResponse.name}",
+                    dataResponse.fullname == null
+                        ? "Fullname : "
+                        : "Fullname : ${dataResponse.fullname}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -60,25 +75,9 @@ class _MyWidgetState extends State<MyhomeStateful> {
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   Text(
-                    dataResponse.job == null
-                        ? "JOB : 'DATA TEST JOB' "
-                        : "JOB : ${dataResponse.job}",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 40,
-              child: Column(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Text(
-                    dataResponse.createdAt == null
-                        ? "CREATED AT : 'DATA TEST CREATED AT' "
-                        : "CREAED AT : ${dataResponse.createdAt}",
+                    dataResponse.email == null
+                        ? "EMAIL: "
+                        : "EMAIL: ${dataResponse.email}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -88,16 +87,16 @@ class _MyWidgetState extends State<MyhomeStateful> {
             ),
             ElevatedButton(
               onPressed: () {
-                HttpStateful.connectAPI("Atcha", "Flutter Dev").then((value) {
-                  print(value.name);
-                  print(value.job);
+                HttpGetStateful.connectAPI(
+                        (1 + Random().nextInt(10)).toString())
+                    .then((value) {
                   setState(() {
                     dataResponse = value;
                   });
                 });
               },
               child: Text(
-                'POST DATA',
+                'GET DATA',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

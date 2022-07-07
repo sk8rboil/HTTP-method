@@ -25,7 +25,9 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
-            http_post(context, 'POST', '/home_stateful', '/home_provider',
+            http_method(context, 'POST', '/post_stateful', '/post_provider',
+                'HTTP-STATEFUL', 'HTTP-PROVIDER'),
+            http_method(context, 'GET', '/get_stateful', '/get_provider',
                 'HTTP-STATEFUL', 'HTTP-PROVIDER'),
           ],
         ),
@@ -34,9 +36,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Column http_post(BuildContext context, String title, String route,
+  Column http_method(BuildContext context, String title, String route,
       String route2, String button1, String button2) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
           title,
