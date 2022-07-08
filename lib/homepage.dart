@@ -29,6 +29,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 'HTTP-STATEFUL', 'HTTP-PROVIDER'),
             http_method(context, 'GET', '/get_stateful', '/get_provider',
                 'HTTP-STATEFUL', 'HTTP-PROVIDER'),
+            http_method(context, 'DELETE', '', '/delete_provider', 'NULL',
+                'HTTP-PROVIDER'),
           ],
         ),
       ),

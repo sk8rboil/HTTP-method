@@ -31,7 +31,12 @@ class _MygetStatefulState extends State<MygetStateful> {
                 child: Image.network(
                   errorBuilder: (BuildContext context, Object exception,
                       StackTrace? stackTrace) {
-                    return Text('Error Please Press Button Before');
+                    return Text(
+                      'Please Press Button Before',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    );
                   },
                   dataResponse.avatar == null
                       ? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'

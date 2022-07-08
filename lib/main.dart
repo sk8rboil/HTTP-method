@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:http_method/homepage.dart';
+import 'package:http_method/models/DELETE/http_DELETE_provider.dart';
 import 'package:http_method/models/GET/http_GET_provider.dart';
 import 'package:http_method/models/POST/http_POST_provider.dart';
+import 'package:http_method/screens/DELETE_provider.dart';
 import 'package:http_method/screens/GET_provider.dart';
 import 'package:http_method/screens/GET_stateful.dart';
 import 'package:http_method/screens/POST_provider.dart';
@@ -28,6 +30,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<HttpGetProvider>(
           create: (_) => HttpGetProvider(),
         ),
+        ChangeNotifierProvider<HttpDeleteProvider>(
+          create: (_) => HttpDeleteProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -42,6 +47,7 @@ class MyApp extends StatelessWidget {
           '/post_provider': (context) => MyhomeProvider(),
           '/get_stateful': (context) => MygetStateful(),
           '/get_provider': (context) => MygetProvider(),
+          '/delete_provider': (context) => MydeleteProvider(),
         },
       ),
     );
