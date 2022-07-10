@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:http_method/homepage.dart';
-import 'package:http_method/models/DELETE/http_DELETE_provider.dart';
-import 'package:http_method/models/GET/http_GET_provider.dart';
-import 'package:http_method/models/POST/http_POST_provider.dart';
+import 'package:http_method/models/local/DELETE/http_DELETE_provider.dart';
+import 'package:http_method/models/local/GET/http_GET_provider.dart';
+import 'package:http_method/models/local/POST/http_POST_provider.dart';
 import 'package:http_method/screens/DELETE_provider.dart';
 import 'package:http_method/screens/GET_provider.dart';
 import 'package:http_method/screens/GET_stateful.dart';

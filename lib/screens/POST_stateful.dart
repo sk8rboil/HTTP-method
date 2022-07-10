@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, avoid_print, unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
-import 'package:http_method/models/POST/http_POST_stateful.dart';
+import 'package:http_method/models/local/POST/http_POST_stateful.dart';
 
 class MyhomeStateful extends StatefulWidget {
   const MyhomeStateful({Key? key}) : super(key: key);

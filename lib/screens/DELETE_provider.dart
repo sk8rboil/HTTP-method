@@ -3,7 +3,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:http_method/models/DELETE/http_DELETE_provider.dart';
+import 'package:http_method/models/local/DELETE/http_DELETE_provider.dart';
 import 'package:provider/provider.dart';
 
 class MydeleteProvider extends StatelessWidget {

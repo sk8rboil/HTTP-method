@@ -3,7 +3,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:http_method/models/GET/http_GET_provider.dart';
+import 'package:http_method/models/local/GET/http_GET_provider.dart';
 import 'package:provider/provider.dart';
 
 class MygetProvider extends StatelessWidget {

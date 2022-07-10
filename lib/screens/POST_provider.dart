@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:http_method/models/POST/http_POST_provider.dart';
+import 'package:http_method/models/local/POST/http_POST_provider.dart';
 
 import 'package:provider/provider.dart';
 

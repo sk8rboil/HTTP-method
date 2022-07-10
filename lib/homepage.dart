@@ -18,22 +18,42 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
+            Row(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                Text(
+                  'Local',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+              ],
+            ),
             http_method(context, 'POST', '/post_stateful', '/post_provider',
                 'HTTP-STATEFUL', 'HTTP-PROVIDER'),
             http_method(context, 'GET', '/get_stateful', '/get_provider',
                 'HTTP-STATEFUL', 'HTTP-PROVIDER'),
             http_method(context, 'DELETE', '', '/delete_provider', 'NULL',
                 'HTTP-PROVIDER'),
+            Row(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                Text(
+                  'Firebase',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
+
 // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
@@ -46,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Text(
           title,
           style: TextStyle(
-            fontSize: 25,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -3,7 +3,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:http_method/models/GET/http_GET_stateful.dart';
+import 'package:http_method/models/local/GET/http_GET_stateful.dart';
 
 class MygetStateful extends StatefulWidget {
   MygetStateful({Key? key}) : super(key: key);
