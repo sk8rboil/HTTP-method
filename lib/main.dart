@@ -12,6 +12,7 @@ import 'package:http_method/screens/POST_provider.dart';
 import 'package:http_method/screens/POST_stateful.dart';
 import 'package:http_method/screens/home_delete.dart';
 import 'package:http_method/screens/home_post.dart';
+import 'package:http_method/screens/test_future_builder.dart';
 
 import 'package:provider/provider.dart';
 
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
           '/delete_provider': (context) => MydeleteProvider(),
           '/home_post': (context) => MyHomePost(),
           '/home_delete': (context) => MyHomeDelete(),
+          '/test_future': (context) => MyFutureBuilder(),
         },
       ),
     );

@@ -49,6 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 'NULL', 'HTTP-POST'),
             http_method(context, 'HOME_DELETE', '', '/home_delete', 'NULL',
                 'HTTP-Delete'),
+            Divider(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/test_future');
+              },
+              child: Text('FutureBuilder'),
+            ),
           ],
         ),
       ),
