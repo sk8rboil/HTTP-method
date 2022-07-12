@@ -22,16 +22,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
-            Row(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                Text(
-                  'Local',
-                  style: TextStyle(
-                    fontSize: 25,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  Text(
+                    'Local',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             http_method(context, 'POST', '/post_stateful', '/post_provider',
                 'HTTP-STATEFUL', 'HTTP-PROVIDER'),
@@ -39,17 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 'HTTP-STATEFUL', 'HTTP-PROVIDER'),
             http_method(context, 'DELETE', '', '/delete_provider', 'NULL',
                 'HTTP-PROVIDER'),
-            Row(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                Text(
-                  'Firebase',
-                  style: TextStyle(
-                    fontSize: 25,
-                  ),
-                ),
-              ],
+            Divider(
+              height: 10,
             ),
+            http_method(context, 'HOME_POST/PUT/PATCH', '', '/home_post',
+                'NULL', 'HTTP-POST'),
+            http_method(context, 'HOME_DELETE', '', '/home_delete', 'NULL',
+                'HTTP-Delete'),
           ],
         ),
       ),

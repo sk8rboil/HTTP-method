@@ -10,6 +10,9 @@ import 'package:http_method/screens/GET_provider.dart';
 import 'package:http_method/screens/GET_stateful.dart';
 import 'package:http_method/screens/POST_provider.dart';
 import 'package:http_method/screens/POST_stateful.dart';
+import 'package:http_method/screens/home_delete.dart';
+import 'package:http_method/screens/home_post.dart';
+
 import 'package:provider/provider.dart';
 
 void main() {
@@ -48,6 +51,8 @@ class MyApp extends StatelessWidget {
           '/get_stateful': (context) => MygetStateful(),
           '/get_provider': (context) => MygetProvider(),
           '/delete_provider': (context) => MydeleteProvider(),
+          '/home_post': (context) => MyHomePost(),
+          '/home_delete': (context) => MyHomeDelete(),
         },
       ),
     );
