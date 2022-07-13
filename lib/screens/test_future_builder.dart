@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, avoid_print
+// ignore_for_file: prefer_const_constructors, unused_local_variable, avoid_print, use_key_in_widget_constructors, must_be_immutable
 
 import 'dart:convert';
 
@@ -6,10 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class MyFutureBuilder extends StatelessWidget {
-  const MyFutureBuilder({Key? key}) : super(key: key);
+  List<Map<String, dynamic>> allUser = [];
 
   Future getallUser() async {
-    await Future.delayed(Duration(seconds: 2));
+    try {
+      var response = await http.get(Uri.parse('https://reqres.in/api/users'));
+      var data = (json.decode(response.body) as Map<String, dynamic>)["data"];
+
+      data.forEach((element) {
+        allUser.add(element);
+      });
+
+      print(allUser);
+    } catch (e) {
+      print('catch error');
+      print(e);
+    }
   }
 
   @override
@@ -21,18 +33,29 @@ class MyFutureBuilder extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
-          }
-
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return ListTile(
-                leading: CircleAvatar(),
-                title: Text('name'),
-                subtitle: Text('email'),
+          } else {
+            if (allUser.length == 0) {
+              return Center(
+                child: Text('lenght = 0'),
               );
-            },
-            itemCount: 5,
-          );
+            }
+
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      '${allUser[index]["avatar"]}',
+                    ),
+                  ),
+                  title: Text(
+                      '${allUser[index]["first_name"]} - ${allUser[index]["last_name"]}'),
+                  subtitle: Text('${allUser[index]["email"]}'),
+                );
+              },
+              itemCount: allUser.length,
+            );
+          }
         },
       ),
     );
