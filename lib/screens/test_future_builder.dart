@@ -1,20 +1,23 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, avoid_print, use_key_in_widget_constructors, must_be_immutable
+// ignore_for_file: prefer_const_constructors, unused_local_variable, avoid_print, use_key_in_widget_constructors, must_be_immutable, unnecessary_string_interpolations
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_method/models/user.dart';
 
 class MyFutureBuilder extends StatelessWidget {
-  List<Map<String, dynamic>> allUser = [];
+  List<UserModel> allUser = [];
 
   Future getallUser() async {
     try {
       var response = await http.get(Uri.parse('https://reqres.in/api/users'));
-      var data = (json.decode(response.body) as Map<String, dynamic>)["data"];
+      List data = (json.decode(response.body) as Map<String, dynamic>)["data"];
 
       data.forEach((element) {
-        allUser.add(element);
+        allUser.add(
+          UserModel.fromJson(element),
+        );
       });
 
       print(allUser);
@@ -36,7 +39,7 @@ class MyFutureBuilder extends StatelessWidget {
           } else {
             if (allUser.length == 0) {
               return Center(
-                child: Text('lenght = 0'),
+                child: Text('No data'),
               );
             }
 
@@ -45,12 +48,11 @@ class MyFutureBuilder extends StatelessWidget {
                 return ListTile(
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(
-                      '${allUser[index]["avatar"]}',
+                      '${allUser[index].avatar}',
                     ),
                   ),
-                  title: Text(
-                      '${allUser[index]["first_name"]} - ${allUser[index]["last_name"]}'),
-                  subtitle: Text('${allUser[index]["email"]}'),
+                  title: Text('${allUser[index].firstname}'),
+                  subtitle: Text('${allUser[index].email}'),
                 );
               },
               itemCount: allUser.length,
